@@ -35,11 +35,6 @@
         "audios"
       ]
     },
-    "availabilityProduct": {
-      "type": "boolean",
-      "default": true,
-      "required": true
-    },
     "priceProduct": {
       "type": "decimal",
       "required": true
@@ -60,6 +55,19 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::category.category"
+    },
+    "availabilityProduct": {
+      "type": "enumeration",
+      "enum": [
+        "En Stock",
+        "Sin Stock"
+      ]
+    },
+    "quantity": {
+      "type": "integer",
+      "default": 1,
+      "required": false,
+      "unique": true
     }
   }
 }

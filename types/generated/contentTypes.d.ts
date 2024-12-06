@@ -411,9 +411,9 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    availabilityProduct: Schema.Attribute.Boolean &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<true>;
+    availabilityProduct: Schema.Attribute.Enumeration<
+      ['En Stock', 'Sin Stock']
+    >;
     category: Schema.Attribute.Relation<'oneToOne', 'api::category.category'>;
     characteristics: Schema.Attribute.Enumeration<
       ['frozen', 'fresh', 'groceries']
@@ -436,6 +436,9 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     priceProduct: Schema.Attribute.Decimal & Schema.Attribute.Required;
     productName: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
+    quantity: Schema.Attribute.Integer &
+      Schema.Attribute.Unique &
+      Schema.Attribute.DefaultTo<1>;
     slug: Schema.Attribute.UID<'productName'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
